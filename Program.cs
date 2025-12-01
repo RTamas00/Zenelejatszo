@@ -114,7 +114,19 @@ namespace Zenelejatszo
                         Console.WriteLine("Zene hozzáadva!");
                         break;
 
-                 
+                    case "6": 
+                        Console.Clear();
+                        Console.Write("Add meg a törlendő indexet: ");
+                        int torol = int.Parse(Console.ReadLine());
+                        if (torol >= 0 && torol < zenek.Count)
+                        {
+                            zenek.RemoveAt(torol);
+                            Console.WriteLine("Törölve!");
+                        }
+                        else Console.WriteLine("Nincs ilyen index!");
+                        break;
+
+                   
         }
     }
 }
