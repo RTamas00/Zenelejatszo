@@ -57,7 +57,29 @@ namespace Zenelejatszo
 
                 string valasztas = Console.ReadLine();
 
-                
+                switch (valasztas)
+                {
+                    case "0":
+                        return;
+
+                    case "1":  
+                        Console.Clear();
+                        int i = 0;
+                        foreach (var z in zenek)
+                            Console.WriteLine($"{i++}. {z}");
+                        break;
+
+                    case "2":  
+                        Console.Clear();
+                        Console.Write("Add meg a cím részletét: ");
+                        string keres = Console.ReadLine().ToLower();
+                        foreach (var z in zenek)
+                        {
+                            if (z.Cim.ToLower().Contains(keres))
+                                Console.WriteLine(z);
+                        }
+                        break;
+
         }
     }
 }
