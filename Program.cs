@@ -80,6 +80,15 @@ namespace Zenelejatszo
                         }
                         break;
 
+                    case "3": 
+                        Console.Clear();
+                        foreach (var z in zenek)
+                        {
+                            if (z.Mufaj.ToLower() == "pop")
+                                Console.WriteLine(z);
+                        }
+                        break;
+
         }
     }
 }
