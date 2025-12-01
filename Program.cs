@@ -98,6 +98,23 @@ namespace Zenelejatszo
                         }
                         break;
 
+                    case "5": 
+                        Console.Clear();
+                        Zene uj = new Zene();
+                        Console.Write("Cím: ");
+                        uj.Cim = Console.ReadLine();
+                        Console.Write("Előadó: ");
+                        uj.Eloado = Console.ReadLine();
+                        Console.Write("Műfaj: ");
+                        uj.Mufaj = Console.ReadLine();
+                        Console.Write("Hossz percben: ");
+                        uj.HosszPerc = double.Parse(Console.ReadLine());
+
+                        zenek.Add(uj);
+                        Console.WriteLine("Zene hozzáadva!");
+                        break;
+
+                 
         }
     }
 }
