@@ -89,6 +89,15 @@ namespace Zenelejatszo
                         }
                         break;
 
+                    case "4": 
+                        Console.Clear();
+                        foreach (var z in zenek)
+                        {
+                            if (z.HosszPerc > 3.5)
+                                Console.WriteLine(z);
+                        }
+                        break;
+
         }
     }
 }
