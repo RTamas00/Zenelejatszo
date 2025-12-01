@@ -1,58 +1,63 @@
-﻿using System.IO;
+﻿using System;
+using System.Collections.Generic;
 
-
-class Zene
+namespace Zenelejatszo
 {
-    public string Cim;
-    public string Eloado;
-    public string Mufaj;
-    public double HosszPerc;
-
-    public override string ToString()
+    internal class Program
     {
-        return $"{Cim} - {Eloado} | {Mufaj} | {HosszPerc} perc";
+        
+        class Zene
+        {
+            public string Cim;
+            public string Eloado;
+            public string Mufaj;
+            public double HosszPerc;  
+
+            public override string ToString()
+            {
+                return $"{Cim} - {Eloado} | {Mufaj} | {HosszPerc} perc";
+            }
+        }
+
+        static void Main(string[] args)
+        {
+            List<Zene> zenek = new List<Zene>();
+
+            string fajleleres = "C:\\Zene\\playlist.txt"; 
+            StreamReader sr = new StreamReader(fajleleres); 
+            List<int> szamok = new List<int>();
+            string sor = "";
+            while ((sor = sr.ReadLine()) != null)
+            {
+                szamok.AddRange(
+                    sor.Split(",")
+                            .Select(s => int.Parse(s.Trim()))
+                            );
+            }
+            Console.WriteLine("beolvasott lista elemei: " + string.Join(";", zenek));
+
+            
+            zenek.Add(new Zene { Cim = "Shape of You", Eloado = "Ed Sheeran", Mufaj = "Pop", HosszPerc = 4.1 });
+            zenek.Add(new Zene { Cim = "Numb", Eloado = "Linkin Park", Mufaj = "Rock", HosszPerc = 3.0 });
+            zenek.Add(new Zene { Cim = "Blinding Lights", Eloado = "The Weeknd", Mufaj = "Pop", HosszPerc = 3.6 });
+
+            while (true)
+            {
+                Console.Clear();
+                Console.WriteLine("===== Zenelejátszó Menü =====");
+                Console.WriteLine("0 - Kilépés");
+                Console.WriteLine("1 - Zeneszámok listázása");
+                Console.WriteLine("2 - Keresés cím szerint");
+                Console.WriteLine("3 - POP műfajú zenék");
+                Console.WriteLine("4 - 3,5 percnél hosszabb zenék");
+                Console.WriteLine("5 - Új zene hozzáadása");
+                Console.WriteLine("6 - Zene törlése");
+                Console.WriteLine("7 - Zene módosítása");
+                Console.Write("\nVálasztás: ");
+
+                string valasztas = Console.ReadLine();
+
+                
+        }
     }
-}
-
-
-          List<Zene> zenek = new List<Zene>();
-
-
-string fajleleres = "C:\\Zene\\playlist.txt"; 
-
-if (File.Exists(fajleleres))
-{
-    string[] sorok = File.ReadAllLines(fajleleres);
-
-    foreach (var sor in sorok)
-    {
-        if (string.IsNullOrWhiteSpace(sor)) continue;
-
-        string[] adatok = sor.Split(';'); 
-        if (adatok.Length != 4) continue;
-
-        Zene z = new Zene();
-        z.Cim = adatok[0];
-        z.Eloado = adatok[1];
-        z.Mufaj = adatok[2];
-
-        if (double.TryParse(adatok[3], out double hossz))
-            z.HosszPerc = hossz;
-        else
-            z.HosszPerc = 0;
-
-        zenek.Add(z);
-    }
-}
-else
-{
-    Console.WriteLine($"A fájl nem található: {fajleleres}");
-}
-
-
-Console.WriteLine("Zeneszámok listázása:");
-int i = 0;
-foreach (var z in zenek)
-{
-    Console.WriteLine($"{i++}. {z}");
 }
